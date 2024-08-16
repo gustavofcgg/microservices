@@ -61,5 +61,22 @@ router.post('/submit', (req,res) =>{
     res.status(201).send('Dado criado com sucesso!')
 })
 
+let items = [
+    {id: 1, nome:'item1'},
+    {id: 2, nome:'item2'},
+    {id: 3, nome:'item3'}
+]
+
+router.get("/items/:id",(req,res)=>{
+    const id =parseInt(req.params.id)
+
+    const item = items.find(item =>item.id == id )
+
+    if(item){
+       return res.status(200).send(item)
+    }else{
+        return res.status(404).send('achei não, painho')
+    }
+})
 
 module.exports = router;
